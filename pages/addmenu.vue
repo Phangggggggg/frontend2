@@ -1,9 +1,9 @@
 <template>
   <div class="all">
-    <h1 class="header" v-if="this.allowDisplay">Your menu is {{menu}}</h1>
+    <h1 class="header" v-if="this.allowDisplay">Your menu is {{ menu }}</h1>
     <h1 class="header" v-else>Your menu is</h1>
     <br />
-    <span class="after-text">{{afterText}}</span>
+    <span class="after-text">{{ afterText }}</span>
     <b-table :items="items" :fields="fields" caption-top></b-table>
     <div v-if="showAddMenu">
       <label class="sr-only" for="input-menu">Add Menu</label>
@@ -14,7 +14,9 @@
         class="mb-2 mr-sm-2 mb-sm-0"
         placeholder="Name of Menu"
       ></b-input>
-      <b-button id="menu-button" variant="danger" @click="appendMenu()">Add menu</b-button>
+      <b-button id="menu-button" variant="danger" @click="appendMenu()"
+        >Add menu</b-button
+      >
     </div>
 
     <br />
@@ -39,8 +41,9 @@
       id="ingre-button"
       variant="primary"
       @click="appendIngredient()"
-    >Add ingredient</b-button>
-    {{resultProduct}}
+      >Add ingredient</b-button
+    >
+    {{ resultProduct }}
   </div>
 </template>
 
@@ -59,10 +62,9 @@ export default {
     };
   },
   async asyncData({ $axios }) {
-    let resultProduct = await $axios.get("https://fakestoreapi.com/products");
-    $axios.post("/api/login");
+    let result = await $axios.post("/api/login", { username: "phang" });
     return {
-      resultProduct: resultProduct.data
+      result
     };
   },
   methods: {
